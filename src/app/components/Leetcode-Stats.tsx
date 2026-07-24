@@ -435,7 +435,7 @@ export default function LeetCodeStats() {
   return (
     <section
       aria-labelledby="leetcode-stats-heading"
-      className={`${cardStyles} flex flex-col gap-4 duration-300 ease-in-out hover:-translate-y-1`}
+      className={`${cardStyles} flex flex-col gap-4`}
     >
       <div className="flex justify-between gap-3">
         <div>

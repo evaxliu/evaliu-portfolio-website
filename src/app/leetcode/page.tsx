@@ -1,18 +1,17 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-
 import LeetCodeStats from "../components/Leetcode-Stats";
-
-export const metadata: Metadata = {
-  title: "LeetCode Stats | Eva Liu",
-  description:
-    "Live LeetCode activity, solved problem counts, streaks, and recent submissions for Eva Liu.",
-};
+import Confetti from "../components/Confetti";
 
 export default function LeetCodePage() {
   return (
-    <main className="min-h-screen w-full px-6 py-10">
-      <div className="mx-auto flex w-full max-w-4xl flex-col gap-7">
+    <section className="w-full">
+      <Confetti />
+      <div className="mx-auto flex w-full max-w-3xl p-10 flex-col gap-7">
+        <div className="flex gap-3">  
+          <p className="text-3xl text-white font-bold">
+            My unnecessarily public LeetCode tracker.
+          </p>
+        </div>
         <Link
           className="
             w-fit font-plex-mono text-sm font-semibold
@@ -29,6 +28,6 @@ export default function LeetCodePage() {
 
         <LeetCodeStats />
       </div>
-    </main>
+    </section>
   );
 }
