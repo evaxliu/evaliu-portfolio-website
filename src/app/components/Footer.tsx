@@ -15,7 +15,7 @@ export default function Footer() {
         </p>
       </div>
 
-      <ul className="flex gap-3 text-[#8f82b0] font-semibold">
+      <div className="flex gap-3 text-[#8f82b0] font-semibold">
         {links.map(link => 
           <Link 
             key={link.name}
@@ -26,7 +26,7 @@ export default function Footer() {
             {link.name}
           </Link>
         )}
-      </ul>
+      </div>
     </footer>
   );
 }
