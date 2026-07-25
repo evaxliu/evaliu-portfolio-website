@@ -76,7 +76,7 @@ const activityColors = [
 ];
 
 const cardStyles =
-  "w-full rounded-2xl border border-[#322851] border-l-4 border-l-violet-300 bg-[#1F1838] px-6 py-5";
+  "min-w-0 w-full rounded-2xl border border-[#322851] border-l-4 border-l-violet-300 bg-[#1F1838] px-4 py-4 sm:px-6 sm:py-5";
 
 function getActivityLevel(count: number, maximum: number) {
   if (count === 0 || maximum === 0) {
@@ -125,7 +125,7 @@ function UpdatedTime({ timestamp }: { timestamp: string }) {
   }).format(updatedAt);
 
   return (
-    <p className="font-plex-mono text-sm text-violet-300/65">
+    <p className="font-plex-mono text-xs text-violet-300/65 sm:text-sm">
       updated {formatted}
     </p>
   );
@@ -170,7 +170,7 @@ function ActivityGrid({
   );
 
   return (
-    <div className="grid grid-cols-6 gap-1.5">
+    <div className="grid grid-cols-6 gap-1 sm:gap-1.5">
       {activity.map(({ date, count }) => {
         const formattedDate =
           new Intl.DateTimeFormat("en-US", {
@@ -187,7 +187,7 @@ function ActivityGrid({
         return (
           <div
             aria-label={label}
-            className={`aspect-square rounded-md ${
+            className={`aspect-square rounded-[4px] sm:rounded-md ${
               activityColors[
                 getActivityLevel(count, maximum)
               ]
@@ -259,16 +259,16 @@ function SubmissionRow({
   return (
     <li>
       <a
-        className="group flex flex-col gap-1.5 rounded-xl border border-[#2b2148] px-4 py-3.5 transition-colors hover:border-violet-300/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300"
+        className="group flex min-w-0 flex-col gap-1.5 rounded-xl border border-[#2b2148] px-3.5 py-3 transition-colors hover:border-violet-300/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 sm:px-4 sm:py-3.5"
         href={`https://leetcode.com/problems/${submission.titleSlug}/`}
         rel="noreferrer"
         target="_blank"
       >
-        <span className="text-sm font-bold leading-snug text-white transition-colors group-hover:text-violet-300">
+        <span className="break-words text-sm font-bold leading-snug text-white transition-colors group-hover:text-violet-300">
           {submission.title}
         </span>
 
-        <span className="flex items-center gap-2">
+        <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
           <StatusText status={submission.status} />
 
           <span className="font-plex-mono text-xs text-violet-300/60">
@@ -437,7 +437,7 @@ export default function LeetCodeStats() {
       aria-labelledby="leetcode-stats-heading"
       className={`${cardStyles} flex flex-col gap-4`}
     >
-      <div className="flex justify-between gap-3">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <a
             href={stats.profileUrl}
@@ -455,7 +455,7 @@ export default function LeetCodeStats() {
           <UpdatedTime timestamp={stats.fetchedAt} />
         </div>
 
-        <p className="font-plex-mono text-sm text-violet-300">
+        <p className="shrink-0 font-plex-mono text-xs text-violet-300 sm:text-sm">
           streak{" "}
           <span className="font-semibold text-white">
             {stats.currentStreak}
@@ -472,7 +472,7 @@ export default function LeetCodeStats() {
 
       <div className="h-px w-full bg-[#2b2148]" />
 
-      <div className="grid grid-cols-2 gap-x-8">
+      <div className="grid min-w-0 grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-x-8">
         <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-3">
             <ColumnLabel>LAST 30 DAYS</ColumnLabel>
@@ -485,14 +485,15 @@ export default function LeetCodeStats() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex min-h-0 min-w-0 flex-col gap-2">
           <ColumnLabel>RECENT SUBMISSIONS</ColumnLabel>
 
           {stats.recentSubmissions.length ? (
-            <div className="relative min-h-0 flex-1">
+            <div className="min-h-0 flex-1 lg:relative">
               <ul
                 className="
-                  absolute inset-0 flex flex-col gap-2.5 overflow-y-auto overscroll-contain pt-2 pr-3
+                  flex max-h-80 flex-col gap-2.5 overflow-y-auto overscroll-contain pt-2 pr-2 sm:pr-3
+                  lg:absolute lg:inset-0 lg:max-h-none
                   [scrollbar-color:#453465_transparent] [scrollbar-width:thin]
                   [&::-webkit-scrollbar]:w-1.5
                   [&::-webkit-scrollbar-track]:bg-transparent
