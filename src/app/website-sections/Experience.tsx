@@ -55,9 +55,9 @@ export default function Experience() {
 
       <ExperienceCard 
         company={"Center for Reproducible Biomedical Modeling"}
-        role={"Software Engineer → Lead Software Engineer"}
+        role={"Software Engineer → Software Engineer Lead"}
         descriptions={[
-          "Led development of a browser-based computational-biology modeling editor — researchers now design simulation models without any local setup.",
+          "Led a team of 3 student engineers developing a browser-based computational-biology modeling editor — researchers now design simulation models without any local setup.",
           "Owned end-to-end execution — roadmap, sprint planning, and delivery — turning research requirements into shipped features.",
           "Presented research software at international conferences (COMBINE, HARMONY), shaping standards and interoperability practices.",
           "Co-authored a peer-reviewed Oxford Bioinformatics publication on a VSCode extension for Antimony — now at 6,000+ Marketplace downloads."
