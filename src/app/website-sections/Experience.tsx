@@ -1,9 +1,5 @@
-import { ArrowRight } from "lucide-react";
 import ExperienceCard from "../components/Experience-Card";
-import ProjectCard from "../components/Project-Card";
 import SectionHeader from "../components/Section-Header";
-import LetsWorkTogether from "./Lets-Work-Together";
-import Link from "next/link";
 
 export default function Experience() {
   const CRBMProjects = [
@@ -21,14 +17,23 @@ export default function Experience() {
     ],
   ];
 
-  const FreelanceProjects = [
+  const contractProjects = [
     [
       "ZV Homeconstruction LLC",
       "zvhomes.org ↗",
       "https://www.zvhomes.org",
-      "",
+      "https://github.com/evaxliu/zv-homeconstruction-website",
       "/projects/preview-zv.webp",
       "ZV Homeconstruction company website preview",
+    ]
+  ];
+
+  const gtechProjects = [
+    [
+      "This Website!",
+      "",
+      "",
+      "https://github.com/evaxliu/personal-website",
     ],
     [
       "Rice Thoughts Blog",
@@ -40,27 +45,33 @@ export default function Experience() {
     ],
   ];
 
-  const sideProjects = [
+  const uwProjects = [
     [
-      "This Website!",
+      "Pet My Dog",
       "",
       "",
-      "https://github.com/evaxliu/personal-website",
+      "https://github.com/evaxliu/pet-my-dog",
+    ],
+    [
+      "Find Your Needs",
+      "",
+      "",
+      "https://github.com/evaxliu/find-your-needs",
     ],
   ];
 
   return(
     <section className="flex flex-col gap-7 w-full max-w-3xl px-10">
-      <SectionHeader label={"FOR ENGINEERING TEAMS"} color={"violet"} id={"engineering"} />
+      <SectionHeader label={"WORK EXPERIENCE"} color={"violet"} id={"engineering"} />
 
       <ExperienceCard 
         company={"Center for Reproducible Biomedical Modeling"}
-        role={"Software Engineer → Software Engineer Lead"}
+        role={"Software Engineer"}
         descriptions={[
           "Led a team of 3 student engineers developing a browser-based computational-biology modeling editor — researchers now design simulation models without any local setup.",
           "Owned end-to-end execution — roadmap, sprint planning, and delivery — turning research requirements into shipped features.",
           "Presented research software at international conferences (COMBINE, HARMONY), shaping standards and interoperability practices.",
-          "Co-authored a peer-reviewed Oxford Bioinformatics publication on a VSCode extension for Antimony — now at 6,000+ Marketplace downloads."
+          "Co-authored a peer-reviewed Oxford Bioinformatics publication on a VSCode extension for Antimony — now at 7,000+ Marketplace downloads."
         ]}
         techStack={[
           "React",
@@ -75,63 +86,40 @@ export default function Experience() {
       />
 
       <ExperienceCard 
-        company={"Independent Contractor"}
-        role={"Freelance Software Engineer"}
+        company={"Z&V Home Construction LLD"}
+        role={"Contract Software Engineer"}
         descriptions={[
-          "Sole engineer on client projects — scoping, building, launching, and supporting production software end to end. Details in Client Work below."
+          "Designed, built, and launched the company's website end to end, replacing its previous Wix site with a custom build I owned from discovery through delivery.",
+          "Developed a responsive marketing site in Next.js, React, TypeScript, and Tailwind CSS, including a project gallery, service sections, and a lead capture contact form.",
+          "Translated business goals and broad requirements into a technical plan, visual direction, and delivery timeline, working directly with the owners throughout.",
+          "Handled deployment, hosting, custom domain, and HTTPS setup, giving the business a self-maintaining production site with automatic builds from source control.",
+          "Implemented technical SEO with page metadata, Open Graph tags, and a sitemap, then verified the site in Google Search Console and got it indexed for local search terms.",
+          "Provide ongoing support for the live site through content updates, performance improvements, and feature work."
         ]}
         techStack={[]}
         accentColor={"violet"}
+        projects={contractProjects}
       />
 
-      <SectionHeader label={"EDUCATION"} color={"violet"} />
+      <SectionHeader label={"EDUCATION"} color={"green"} id={"education"} />
+
+      <ExperienceCard 
+        company={"Georgia Institute of Technology"}
+        role={"M.S. in Computer Science — College of Computing"}
+        descriptions={[]}
+        techStack={[]}
+        accentColor={"green"}
+        projects={gtechProjects}
+      />
 
       <ExperienceCard 
         company={"University of Washington"}
         role={"B.S. in Computer Science — Paul G. Allen School of Computer Science & Engineering"}
         descriptions={[]}
         techStack={[]}
-        accentColor={"violet"}
-        projects={sideProjects}
+        accentColor={"green"}
+        projects={uwProjects}
       />
-
-      <SectionHeader label={"FOR YOUR BUSINESS"} color={"green"} id={"freelance"} />
-
-      <section className="flex flex-col gap-4 grow w-full">
-        <h3 className="text-xl text-white font-semibold">
-          Featured Client Work
-        </h3>
-
-        <p className="text-[#8f82b0] font-medium">
-          Built, launched, and running in production today.
-        </p>
-
-        <div className="grid auto-rows-fr grid-cols-1 gap-4 md:grid-cols-2 text-green-300">
-          {FreelanceProjects.map((project, idx) => (
-            <ProjectCard
-              key={idx}
-              title={project[0]}
-              projLinkTitle={project[1]}
-              projectLink={project[2]}
-              codeLink={project[3]}
-              imageSrc={project[4]}
-              imageAlt={project[5]}
-            />
-          ))}
-        </div>
-        
-        <Link
-          href="/freelance-software-development"
-          className="inline-flex items-center self-start gap-2 h-11 px-5 rounded-xl
-            bg-[#221b39] border border-[#322851] text-green-300 text-sm font-bold
-            hover:-translate-y-1 duration-300 ease-in-out group"
-        >
-          Services & how it works
-          <ArrowRight className="size-4 transition-transform duration-200 ease-out group-hover:translate-x-1.5" />
-        </Link>
-      </section>
-
-      <LetsWorkTogether heading={"Get in touch"} subheading={"Freelance project or full-time opportunity — let's talk."} />
     </section>
   );
 }

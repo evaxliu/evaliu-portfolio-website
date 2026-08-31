@@ -4,7 +4,7 @@ export default function Footer() {
   const links = [
     { name: "LinkedIn", href: "https://www.linkedin.com/in/el02/" },
     { name: "GitHub", href: "https://github.com/evaxliu" },
-    { name: "Resume", href: "/EvaLiuResume.pdf" }
+    { name: "Resume", href: "/Eva_Liu_Resume.pdf" }
   ]
 
   return(
