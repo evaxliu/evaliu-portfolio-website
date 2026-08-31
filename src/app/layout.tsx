@@ -6,12 +6,12 @@ import Footer from "./components/Footer";
 const siteUrl = "https://evaxliu.com";
 
 const siteDescription =
-  "UW CS graduate and software engineer building web applications, research tools, custom websites, and production-ready features for engineering teams and businesses.";
+  "MS in Computer Science at Georgia Tech and software engineer. I build research tools, web applications, and production software.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
-  title: "Eva Liu ✦ Software Engineer & Freelance Developer",
+  title: "Eva Liu ✦ Software Engineer & MSCS Georgia Tech",
 
   description: siteDescription,
 
@@ -33,16 +33,16 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Eva Liu ✦ Software Engineer & Freelance Developer",
+    title: "Eva Liu ✦ Software Engineer & MSCS Georgia Tech",
     description: siteDescription,
     url: siteUrl,
     siteName: "Eva Liu",
     images: [
       {
-        url: "/OG-image.png",
+        url: "/OG_Prev.png",
         width: 1200,
         height: 630,
-        alt: "Eva Liu — Software Engineer available for full-time roles and freelance projects",
+        alt: "Eva Liu — Software Engineer available for full-time and intern roles.",
       },
     ],
     locale: "en_US",
@@ -51,9 +51,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Eva Liu ✦ Software Engineer & Freelance Developer",
+    title: "Eva Liu ✦ Software Engineer & MSCS Georgia Tech",
     description: siteDescription,
-    images: ["/OG-image.png"],
+    images: ["/OG_Prev.png"],
   },
 };
 
@@ -77,7 +77,7 @@ const jsonLd = {
       "@type": "ProfilePage",
       "@id": `${siteUrl}/#profile-page`,
       url: `${siteUrl}/`,
-      name: "Eva Liu — Software Engineer & Freelance Developer",
+      name: "Eva Liu — Software Engineer & MSCS Georgia Tech",
       description: siteDescription,
       isPartOf: {
         "@id": `${siteUrl}/#website`,
@@ -93,8 +93,8 @@ const jsonLd = {
       name: "Eva Liu",
       url: `${siteUrl}/`,
       description:
-        "Software engineer available for full-time roles and freelance projects, building web applications, research tools, custom websites, and production-ready features.",
-      jobTitle: ["Software Engineer", "Freelance Software Developer"],
+        "MS in Computer Science at Georgia Tech and software engineer. I build research tools, web applications, and production software.",
+      jobTitle: ["Software Engineer"],
       sameAs: [
         "https://github.com/evaxliu",
         "https://www.linkedin.com/in/el02/",

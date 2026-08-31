@@ -10,11 +10,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 1,
     },
-    {
-      url: `${BASE_URL}/freelance-software-development`,
-      lastModified: new Date("2026-07-22"),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
   ];
 }
