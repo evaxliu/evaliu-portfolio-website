@@ -96,7 +96,7 @@ function formatSubmissionDate(timestamp: number) {
   return new Intl.DateTimeFormat("en-US", {
     month: "short",
     day: "numeric",
-    timeZone: TIME_ZONE,
+    timeZone: "UTC",
   }).format(new Date(timestamp * 1000));
 }
 

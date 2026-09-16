@@ -5,7 +5,7 @@ export const revalidate = 0;
 const LEETCODE_URL = "https://leetcode.com/graphql/";
 const RECENT_SUBMISSION_FETCH_LIMIT = 100;
 const RECENT_SUBMISSION_DISPLAY_LIMIT = 20;
-const TIME_ZONE = "America/Los_Angeles";
+const TIME_ZONE = "UTC";
 
 type Difficulty = "Easy" | "Medium" | "Hard";
 type Calendar = Record<string, number>;
