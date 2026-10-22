@@ -1,18 +1,17 @@
-# Eva Liu — Personal Website
+# Eva Liu | Personal Website
 
-My portfolio website for software engineering opportunities and freelance web development work.
+My portfolio website for software engineering opportunities.
 
 **Live site:** [evaxliu.com](https://evaxliu.com)
 
 ## Overview
 
-I built this site to give hiring teams and potential clients one place to understand my experience, view my work, and contact me. It highlights my software engineering background, research software projects, independent projects, and freelance software development services.
+I built this site to give hiring teams one place to understand my experience, view my work, and get in touch. It highlights my software engineering background, research software projects, and independent projects.
 
 ## Highlights
 
 * Responsive single-page layout for desktop and mobile
-* Dedicated paths for software engineering experience and freelance services
-* Reusable components for experience, projects, service information, navigation, and contact
+* Reusable components for experience, projects, navigation, and contact
 * Direct links to source code, live projects, my resume, GitHub, and LinkedIn
 * Contact form powered by Web3Forms
 * SEO and Open Graph metadata
@@ -67,13 +66,13 @@ Open http://localhost:3000 in your browser.
 
 ## Available Scripts
 
-* `npm run dev` — starts the development server
-* `npm run build` — creates a production build
-* `npm run start` — runs the production build
-* `npm run lint` — checks the project for linting issues
+* `npm run dev`: starts the development server
+* `npm run build`: creates a production build
+* `npm run start`: runs the production build
+* `npm run lint`: checks the project for linting issues
 
 ## Contact
 
-* [Portfolio](https://www.lilacplanet.dev)
+* [Portfolio](https://evaxliu.com)
 * [LinkedIn](https://www.linkedin.com/in/el02/)
 * [GitHub](https://github.com/evaxliu)
