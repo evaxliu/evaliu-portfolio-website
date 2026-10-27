@@ -1,31 +1,21 @@
 import Link from "next/link";
 
+const links = [
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/el02/" },
+  { name: "GitHub", href: "https://github.com/evaxliu" },
+  { name: "Resume", href: "/Eva_Liu_Resume.pdf" },
+];
+
 export default function Footer() {
-  const links = [
-    { name: "LinkedIn", href: "https://www.linkedin.com/in/el02/" },
-    { name: "GitHub", href: "https://github.com/evaxliu" },
-    { name: "Resume", href: "/Eva_Liu_Resume.pdf" }
-  ]
-
-  return(
-    <footer className="flex flex-col md:flex-row gap-7 w-full max-w-3xl px-10 py-15 justify-between text-sm">
-      <div>
-        <p className="text-[#8f82b0] font-semibold">
-          Eva Liu · evaxliu.com ✦
-        </p>
-      </div>
-
-      <div className="flex gap-3 text-[#8f82b0] font-semibold">
-        {links.map(link => 
-          <Link 
-            key={link.name}
-            href={link.href}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
+  return (
+    <footer className="halo relative z-[2] mx-auto flex w-full max-w-[960px] flex-wrap items-center justify-between gap-5 px-7 pb-11 pt-6 text-sm">
+      <p className="font-semibold text-[#8f82b0]">Eva Liu · evaxliu.com ✦</p>
+      <div className="flex gap-3.5 font-semibold text-[#8f82b0]">
+        {links.map((link) => (
+          <Link key={link.name} href={link.href} rel="noopener noreferrer" target="_blank" className="hover:text-white">
             {link.name}
           </Link>
-        )}
+        ))}
       </div>
     </footer>
   );

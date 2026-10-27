@@ -1,71 +1,28 @@
-import ProjectCard from "./Project-Card";
+type Props = {
+  date: string;
+  /** Highlight colour for current or upcoming entries. Past entries stay muted. */
+  dateColor?: string;
+  title: string;
+  org: string;
+  body?: string;
+};
 
-type cardProps = {
-  company: string,
-  role: string,
-  date?: string,
-  descriptions: string[],
-  techStack: string[],
-  accentColor: string,
-  projects?: string[][]
-}
-
-export default function ExperienceCard({company, role, date, descriptions, accentColor, projects}: cardProps) {
-  const accentClass =
-    accentColor === "violet"
-      ? "border-l-violet-300 text-violet-300"
-      : "border-l-green-300 text-green-300"
-
-  return(
-    <section className={`flex flex-col gap-3 px-7 py-5 grow w-full bg-[#1F1838] rounded-2xl border border-[#322851] border-l-4 hover:-translate-y-1 duration-300 ease-in-out ${accentClass}`}>
-      <div className='flex justify-between flex-col gap-3 md:flex-row'>
-        <h2 className="text-md text-white font-bold">
-          {company}
-        </h2>
-
-        {date && 
-          <p className="text-sm font-plex-mono">
-            {date}
-          </p>
-        }
-      </div>
-
-      <p className="text-sm font-semibold text-[#E8A3CF]">
-        {role}
-      </p>
-
-      <ul className="flex flex-col gap-3">
-        {descriptions.map((bullet, idx) =>
-          <li key={idx} className='flex gap-3'>
-            <p>
-              ★
-            </p>
-
-            <p className="text-sm text-violet-200 font-semibold">
-              {bullet}
-            </p>
-          </li>
+export default function ExperienceCard({ date, dateColor, title, org, body }: Props) {
+  return (
+    <div className="flex flex-wrap items-baseline gap-x-6 gap-y-1.5 border-t border-[#1d1834] py-4">
+      <span
+        className="shrink-0 basis-[140px] text-xs font-medium leading-relaxed"
+        style={{ color: dateColor ?? "#8f82b0" }}
+      >
+        {date}
+      </span>
+      <div className="flex min-w-0 flex-[1_1_260px] flex-col gap-1">
+        <span className="font-space-grotesk text-[17px] font-semibold leading-snug text-white">{title}</span>
+        <span className="text-sm text-[#8f82b0]">{org}</span>
+        {body && (
+          <p className="mt-2 text-[14.5px] leading-[1.7] text-[#ddd6fe] [text-wrap:pretty]">{body}</p>
         )}
-      </ul>
-
-      {projects && 
-        <>
-          <div className="flex h-px bg-[#2b2148] w-full" />
-          <div className="grid auto-rows-fr grid-cols-1 gap-4 md:grid-cols-2">
-            {projects.map((project, idx) => (
-              <ProjectCard
-                key={idx}
-                title={project[0]}
-                projLinkTitle={project[1]}
-                projectLink={project[2]}
-                codeLink={project[3]}
-                // imageSrc={project[4]}
-                imageAlt={project[5]}
-              />
-            ))}
-          </div>
-        </>
-      }
-    </section>
+      </div>
+    </div>
   );
 }

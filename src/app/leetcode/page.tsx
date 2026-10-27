@@ -1,33 +1,22 @@
 import Link from "next/link";
 import LeetCodeStats from "../components/Leetcode-Stats";
-import Confetti from "../components/Confetti";
 
 export default function LeetCodePage() {
   return (
-    <section className="w-full">
-      <Confetti />
-      <div className="mx-auto flex w-full max-w-3xl p-10 flex-col gap-7">
-        <div className="flex gap-3">  
-          <p className="text-3xl text-white font-bold">
-            My unnecessarily public LeetCode tracker.
-          </p>
-        </div>
+    <div className="halo flex flex-1 flex-col">
+      <div className="mx-auto w-full max-w-[960px] px-7 pt-6">
         <Link
-          className="
-            w-fit font-plex-mono text-sm font-semibold
-            text-violet-300 transition-colors
-            hover:text-white
-            focus-visible:outline-none
-            focus-visible:ring-2
-            focus-visible:ring-violet-300
-          "
           href="/"
+          className="inline-flex text-[13px] font-medium leading-none text-[#8f82b0] transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300"
         >
           ← Back to home
         </Link>
-
-        <LeetCodeStats />
       </div>
-    </section>
+      <div className="mx-auto flex w-full max-w-[720px] flex-1 flex-col px-7">
+        <div className="my-auto pb-12 pt-12">
+          <LeetCodeStats />
+        </div>
+      </div>
+    </div>
   );
 }

@@ -1,28 +1,43 @@
-type sectionHeaderProps = {
-  label: string,
-  id?: string,
-  color: string,
+/** A small ringed planet. With orbit=true it anchors a homepage orbit line. */
+export function Planet({
+  color,
+  size = 30,
+  orbit = false,
+}: {
+  color: string;
+  size?: number;
+  orbit?: boolean;
+}) {
+  const inset = size * 0.14;
+  return (
+    <span
+      aria-hidden="true"
+      data-orbit={orbit ? color : undefined}
+      className="relative inline-block shrink-0"
+      style={{ width: size, height: size }}
+    >
+      <span className="absolute rounded-full" style={{ inset, background: color }} />
+      <span
+        className="absolute rounded-full border-[1.5px] border-white opacity-45"
+        style={{
+          left: -size * 0.1,
+          right: -size * 0.1,
+          top: size * 0.37,
+          height: size * 0.27,
+          transform: "rotate(-18deg)",
+        }}
+      />
+    </span>
+  );
 }
 
-export default function SectionHeader({label, color, id} : sectionHeaderProps) {
-  const labelColor =
-    color === "violet"
-      ? "fill-violet-300 text-violet-300"
-      : "fill-green-300 text-green-300"
-
+export default function SectionHeader({ title, color }: { title: string; color: string }) {
   return (
-    <div className={`flex items-center pt-5 gap-3 ${labelColor}`} id={id ? id : ""}>
-      <p>
-        <svg className="h-1.5 w-1.5" viewBox="0 0 6 6" aria-hidden="true">
-          <circle cx={3} cy={3} r={3} />
-        </svg>
-      </p>
-
-      <p className="font-mono font-semibold text-sm tracking-[1.5px] whitespace-nowrap">
-        {label}
-      </p>
-
-      <div className="flex h-px bg-[#2b2148] w-full" />
-    </div>
-  )
+    <>
+      <Planet color={color} orbit />
+      <h2 className="mb-6 mt-3 font-space-grotesk text-xl font-semibold leading-none tracking-[-0.01em] text-white">
+        {title}
+      </h2>
+    </>
+  );
 }

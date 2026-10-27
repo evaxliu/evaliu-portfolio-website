@@ -1,43 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-plex-mono: "IBM Plex Mono", monospace;
-
   --font-plex-sans: "IBM Plex Sans", sans-serif;
-
   --font-space-grotesk: "Space Grotesk", sans-serif;
-
-  --animate-marquee: marquee 90s linear infinite;
-
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-
-    to {
-      transform: translateX(-50%);
-    }
-  }
-  
+  --animate-bounce-star: bounce-star 1s infinite;
 }
+
+@keyframes bounce-star {
+  0%, 100% { transform: translateY(-14%); animation-timing-function: cubic-bezier(.8,0,1,1); }
+  50% { transform: none; animation-timing-function: cubic-bezier(0,0,.2,1); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: .2; transform: scale(.7); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+@keyframes trailfade {
+  from { opacity: .9; transform: scale(1) rotate(0); }
+  to { opacity: 0; transform: scale(.3) rotate(80deg) translateY(10px); }
+}
+@keyframes shoot {
+  0% { opacity: 0; transform: translate(0,0) rotate(-28deg); }
+  8% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-520px,280px) rotate(-28deg); }
+}
+@keyframes burst {
+  from { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+  to { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(.4) rotate(120deg); }
+}
+
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: #171129;
+  background: #0c0a1d;
+  color: #fff;
+  font-family: var(--font-plex-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+/* Dark halo so text stays readable over stars and orbit lines */
+.halo { text-shadow: 0 0 2px #0c0a1d, 0 0 8px #0c0a1d, 0 0 16px #0c0a1d; }
 
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
 }

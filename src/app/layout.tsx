@@ -2,6 +2,7 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 import Footer from "./components/Footer";
+import GalaxyEffects from "./components/GalaxyEffects";
 
 const siteUrl = "https://evaxliu.com";
 
@@ -10,28 +11,15 @@ const siteDescription =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-
   title: "Eva Liu ✦ Software Engineer & MSCS Georgia Tech",
-
   description: siteDescription,
-
-  alternates: {
-    canonical: "/",
-  },
-
+  alternates: { canonical: "/" },
   icons: {
     icon: [
-      {
-        url: "/purple-star.png",
-      },
-      {
-        url: "/purple-star.png",
-        sizes: "48x48",
-        type: "image/png",
-      },
+      { url: "/purple-star.png" },
+      { url: "/purple-star.png", sizes: "48x48", type: "image/png" },
     ],
   },
-
   openGraph: {
     title: "Eva Liu ✦ Software Engineer & MSCS Georgia Tech",
     description: siteDescription,
@@ -48,7 +36,6 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
-
   twitter: {
     card: "summary_large_image",
     title: "Eva Liu ✦ Software Engineer & MSCS Georgia Tech",
@@ -59,7 +46,6 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-
   "@graph": [
     {
       "@type": "WebSite",
@@ -68,41 +54,26 @@ const jsonLd = {
       name: "Eva Liu",
       description: siteDescription,
       inLanguage: "en-US",
-      publisher: {
-        "@id": `${siteUrl}/#person`,
-      },
+      publisher: { "@id": `${siteUrl}/#person` },
     },
-
     {
       "@type": "ProfilePage",
       "@id": `${siteUrl}/#profile-page`,
       url: `${siteUrl}/`,
       name: "Eva Liu — Software Engineer & MSCS Georgia Tech",
       description: siteDescription,
-      isPartOf: {
-        "@id": `${siteUrl}/#website`,
-      },
-      mainEntity: {
-        "@id": `${siteUrl}/#person`,
-      },
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      mainEntity: { "@id": `${siteUrl}/#person` },
     },
-
     {
       "@type": "Person",
       "@id": `${siteUrl}/#person`,
       name: "Eva Liu",
       url: `${siteUrl}/`,
-      description:
-        "MS in Computer Science at Georgia Tech and software engineer. I build research tools, web applications, and production software.",
+      description: siteDescription,
       jobTitle: ["Software Engineer"],
-      sameAs: [
-        "https://github.com/evaxliu",
-        "https://www.linkedin.com/in/el02/",
-      ],
-      alumniOf: {
-        "@type": "CollegeOrUniversity",
-        name: "University of Washington",
-      },
+      sameAs: ["https://github.com/evaxliu", "https://www.linkedin.com/in/el02/"],
+      alumniOf: { "@type": "CollegeOrUniversity", name: "University of Washington" },
     },
   ],
 };
@@ -114,21 +85,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">
+      <body className="flex min-h-full flex-col">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
           }}
         />
-
-        <main>
-          {children}
-        </main>
-
-        <div className="flex items-center flex-col">
-          <Footer />
-        </div>
+        <GalaxyEffects />
+        <main className="relative z-[2] flex flex-1 flex-col">{children}</main>
+        <Footer />
       </body>
     </html>
   );

@@ -1,20 +1,18 @@
-import Link from "next/link";
+type Props = { name: string; href: string; primary?: boolean };
 
-type socialProps = {
-  name: string,
-  url: string,
-}
-
-export default function SocialButton({name, url} : socialProps){
-  return(
-    <Link 
-      key={name}
-      href={url}
-      rel="noopener noreferrer"
+export default function SocialButton({ name, href, primary = false }: Props) {
+  return (
+    <a
+      href={href}
       target="_blank"
-      className="flex h-12 items-center justify-center border border-[#221b39] bg-[#221b39] text-white py-2.5 px-5 rounded-xl font-bold hover:-translate-y-1 duration-300 ease-in-out"
+      rel="noopener noreferrer"
+      className={
+        primary
+          ? "inline-flex items-center rounded-full border border-[#ddd6fe] bg-[#ddd6fe] px-5 py-[11px] text-sm font-medium leading-none text-[#0c0a1d] transition-colors [text-shadow:none] hover:bg-white"
+          : "inline-flex items-center rounded-full border border-[#2e2650] px-5 py-[11px] text-sm font-medium leading-none text-[#ddd6fe] transition-colors hover:border-[#c4b5fd] hover:text-white"
+      }
     >
       {name}
-    </Link>
-  )
+    </a>
+  );
 }

@@ -1,72 +1,54 @@
-import Image from "next/image";
-import Link from "next/link";
+import type { ReactNode } from "react";
 
-type ProjectProps = {
-  title: string;
-  projLinkTitle?: string;
-  projectLink?: string;
-  codeLink?: string;
-  imageSrc?: string;
-  imageAlt: string;
+export type ProjectLink = { label: "Website" | "Code" | "Paper"; href: string };
+
+const LINK_COLORS: Record<ProjectLink["label"], string> = {
+  Website: "#86efac",
+  Code: "#f9a8d4",
+  Paper: "#fde68a",
 };
 
-export default function ProjectCard({
-  title,
-  projLinkTitle,
-  projectLink,
-  codeLink,
-  imageSrc,
-  imageAlt,
-}: ProjectProps) {
+type Props = {
+  name: string;
+  description: string;
+  color: string;
+  icon: ReactNode;
+  iconTitle: string;
+  tag?: string;
+  links: ProjectLink[];
+};
+
+export default function ProjectCard({ name, description, color, icon, iconTitle, tag, links }: Props) {
   return (
-    <article className="flex h-full w-full flex-col overflow-hidden rounded-xl border border-[#322851] bg-[#171129] sm:rounded-2xl">
-      {imageSrc && (
-        <div className="relative aspect-16/10 w-full shrink-0 overflow-hidden border-b border-[#322851]">
-          <Image
-            src={imageSrc}
-            alt={imageAlt}
-            fill
-            sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
-            className="object-cover object-top"
-          />
-        </div>
-      )}
-
-      <div className="flex flex-1 flex-col gap-4 px-4 py-4 sm:px-5 sm:py-5">
-        <h3 className="wrap-break-word text-sm font-bold text-white">
-          {title}
+    <div className="grid grid-cols-[20px_minmax(0,1fr)] content-start items-start gap-x-3.5 gap-y-2">
+      <span title={iconTitle} className="mt-px grid size-5 place-items-center" style={{ color }}>
+        {icon}
+      </span>
+      <div className="flex flex-col gap-[5px]">
+        <h3 className="flex flex-wrap items-center gap-2 font-space-grotesk text-[15.5px] font-semibold leading-snug text-white">
+          {name}
+          {tag && (
+            <span className="rounded-full border border-[#2f4a3a] px-2 py-[3px] font-plex-sans text-[11px] font-medium leading-tight text-[#86efac] [text-shadow:none]">
+              {tag}
+            </span>
+          )}
         </h3>
-
-        <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-2">
-          {projectLink ? (
-            <Link
-              href={projectLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-plex-sans text-xs font-semibold underline-offset-4 transition-opacity hover:opacity-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-300"
-            >
-              {projLinkTitle ?? "View project"}
-            </Link>
-          ) : (
-            projLinkTitle && (
-              <span className="cursor-default select-none font-plex-sans text-xs font-semibold">
-                {projLinkTitle}
-              </span>
-            )
-          )}
-
-          {codeLink && (
-            <Link
-              href={codeLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="select-none font-plex-sans text-xs font-semibold text-pink-300 underline-offset-4 transition-colors hover:text-pink-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-300"
-            >
-              Code ↗
-            </Link>
-          )}
-        </div>
+        <p className="text-[13px] leading-[1.55] text-[#a99ec8] [text-wrap:pretty]">{description}</p>
       </div>
-    </article>
+      <div className="col-start-2 flex flex-wrap gap-4 text-xs font-medium leading-none">
+        {links.map((link) => (
+          <a
+            key={link.label}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-opacity hover:opacity-75"
+            style={{ color: LINK_COLORS[link.label] }}
+          >
+            {link.label} ↗
+          </a>
+        ))}
+      </div>
+    </div>
   );
 }

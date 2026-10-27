@@ -1,57 +1,50 @@
-import NavCard from "../components/Nav-Card";
+import Image from "next/image";
+import Link from "next/link";
 import SocialButton from "../components/Social-Button";
-import Surprise from "./Surprise";
 
-const links = [
-  { name: "LinkedIn", href: "https://www.linkedin.com/in/el02/" },
-  { name: "GitHub", href: "https://github.com/evaxliu" },
-  { name: "Resume", href: "/Eva_Liu_Resume.pdf" }
-]
+const SKILLS = ["React", "TypeScript", "Next.js", "Python", "HTML/CSS"];
 
 export default function Landing() {
-  return(
-    <section className="flex flex-col items-start justify-center gap-7 w-full max-w-3xl p-10">
-      <div className="flex gap-3">
-        <Surprise />
-
-        <p className="text-5xl text-white font-bold">
-          Eva Liu
-        </p>
+  return (
+    <header className="mx-auto flex max-w-[560px] flex-col items-center gap-5 pt-[170px] text-center">
+      <div className="flex items-center gap-3">
+        <Link
+          href="/leetcode"
+          aria-label="View live LeetCode stats"
+          title="psst — live LeetCode stats"
+          className="inline-flex transition-transform duration-[250ms] hover:rotate-[-8deg] hover:scale-110"
+        >
+          <Image src="/purple-star.png" alt="" width={40} height={40} className="animate-bounce-star" priority />
+        </Link>
+        <p className="font-space-grotesk text-[38px] font-bold leading-none tracking-[-0.025em] text-white">Eva Liu</p>
       </div>
 
-      <div className="flex flex-col gap-5 max-w-2xl">
-        <h1 className="text-xl text-white font-bold">
-          Software Engineer — available for full-time and intern roles
-        </h1>
+      <h1 className="font-space-grotesk text-[19px] font-medium leading-[1.55] text-white [text-wrap:balance]">
+        Hi, I&apos;m{" "}
+        <span className="text-[#c4b5fd] underline decoration-[#f9a8d4] decoration-wavy decoration-[1.5px] underline-offset-[6px]">
+          Eva
+        </span>{" "}
+        — a software engineer available for full-time and intern roles.
+      </h1>
 
-        <p className="text-md leading-8 text-violet-200 font-semibold">
-          Masters in Computer Science @ Georgia Institute of Technology. I build research tools, web applications, and production software.
-        </p>
+      <p className="text-[15.5px] leading-[1.7] text-[#b8aed4] [text-wrap:balance]">
+        I build research tools, web apps, and production software.
+      </p>
+
+      <p className="text-[13px] font-medium leading-relaxed tracking-[0.02em] text-[#8f82b0] [text-wrap:balance]">
+        {SKILLS.map((skill, i) => (
+          <span key={skill}>
+            {i > 0 && <span className="text-[#4a3d6b]"> · </span>}
+            {skill}
+          </span>
+        ))}
+      </p>
+
+      <div className="mt-1 flex flex-wrap justify-center gap-2.5">
+        <SocialButton name="LinkedIn" href="https://www.linkedin.com/in/el02/" />
+        <SocialButton name="GitHub" href="https://github.com/evaxliu" />
+        <SocialButton name="Resume" href="/Eva_Liu_Resume.pdf" primary />
       </div>
-
-      <div className="flex gap-3 text-sm flex-wrap">
-        {links.map(link => 
-          <SocialButton key={link.name} name={link.name} url={link.href} />
-        )}
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <NavCard 
-          title={"Work Experience"}
-          description={"I build research tools, web applications, and production software."}
-          link={"See Experience"}
-          url={"engineering"}
-          accentColor={"violet"}
-        />
-
-        <NavCard 
-          title={"Education"}
-          description={"UW Computer Science graduate, starting my MS in Computer Science at Georgia Tech this spring."}
-          link={"See Education"} 
-          url={"education"}
-          accentColor={"green"}
-        />
-      </div>
-    </section>
+    </header>
   );
 }
