@@ -8,7 +8,7 @@ const links = [
 
 export default function Footer() {
   return (
-    <footer className="halo relative z-[2] mx-auto flex w-full max-w-[960px] flex-wrap items-center justify-between gap-5 px-7 pb-11 pt-6 text-sm">
+    <footer className="halo relative z-[2] mx-auto flex w-full max-w-[696px] flex-wrap items-center justify-between gap-5 px-7 pb-11 pt-6 text-[15px]">
       <p className="font-semibold text-[#8f82b0]">Eva Liu · evaxliu.com ✦</p>
       <div className="flex gap-3.5 font-semibold text-[#8f82b0]">
         {links.map((link) => (

@@ -53,7 +53,7 @@ function formatUpdated(timestamp: string) {
 
 function BlockHeading({ title, color }: { title: string; color: string }) {
   return (
-    <h3 className="mb-3 flex items-center gap-2.5 font-space-grotesk text-[17px] font-semibold leading-none text-white">
+    <h3 className="mb-3 flex items-center gap-2.5 font-space-grotesk text-[19px] font-semibold leading-none text-white">
       <Planet color={color} size={18} />
       {title}
     </h3>
@@ -63,7 +63,7 @@ function BlockHeading({ title, color }: { title: string; color: string }) {
 function Header({ children }: { children?: React.ReactNode }) {
   return (
     <header className="flex flex-col items-center gap-3 text-center">
-      <h1 className="font-space-grotesk text-[26px] font-semibold leading-tight tracking-[-0.015em] text-white [text-wrap:balance]">
+      <h1 className="font-space-grotesk text-[30px] font-semibold leading-tight tracking-[-0.015em] text-white [text-wrap:balance]">
         My LeetCode, on display, for accountability.
       </h1>
       {children}
@@ -110,7 +110,7 @@ function DifficultyBars({ solved }: { solved: Record<Difficulty, number> }) {
         const color = DIFFICULTY_COLORS[difficulty];
         return (
           <div key={difficulty} className="flex flex-col gap-2 border-t border-[#1d1834] py-[7px]">
-            <div className="flex justify-between text-[14.5px] font-medium leading-none">
+            <div className="flex justify-between text-[16px] font-medium leading-none">
               <span style={{ color }}>{difficulty}</span>
               <span className="font-semibold text-white">{count}</span>
             </div>
@@ -134,10 +134,10 @@ function SubmissionRow({ submission }: { submission: RecentSubmission }) {
         rel="noreferrer"
         className="group flex w-full flex-col justify-center gap-1 py-[9px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300"
       >
-        <span className="break-words text-[14.5px] font-medium leading-snug text-white transition-colors group-hover:text-[#c4b5fd]">
+        <span className="break-words text-[16px] font-medium leading-snug text-white transition-colors group-hover:text-[#c4b5fd]">
           {submission.title}
         </span>
-        <span className="flex flex-wrap gap-2.5 text-[12.5px] leading-none">
+        <span className="flex flex-wrap gap-2.5 text-[14px] leading-none">
           <span style={{ color: accepted ? "#86efac" : "#fde68a" }}>
             {accepted ? "✓" : "✕"} {submission.status}
           </span>
@@ -152,9 +152,9 @@ function Message({ children, profileUrl }: { children: string; profileUrl?: stri
   return (
     <div className="flex flex-col items-center gap-3">
       <Header />
-      <p className="text-sm text-[#b8aed4]">{children}</p>
+      <p className="text-[15.5px] text-[#b8aed4]">{children}</p>
       {profileUrl && (
-        <a className="text-xs font-semibold text-[#c4b5fd]" href={profileUrl} rel="noreferrer" target="_blank">
+        <a className="text-[13.5px] font-semibold text-[#c4b5fd]" href={profileUrl} rel="noreferrer" target="_blank">
           View profile on LeetCode ↗
         </a>
       )}
@@ -216,7 +216,7 @@ export default function LeetCodeStats() {
   return (
     <div>
       <Header>
-        <div className="flex flex-wrap justify-center gap-x-[18px] gap-y-1.5 text-[13.5px] leading-snug text-[#8f82b0]">
+        <div className="flex flex-wrap justify-center gap-x-[18px] gap-y-1.5 text-[15px] leading-snug text-[#8f82b0]">
           <span>updated {formatUpdated(stats.fetchedAt)}</span>
           <span>
             streak <b className="font-semibold text-white">{stats.currentStreak}</b>
@@ -251,7 +251,7 @@ export default function LeetCodeStats() {
               ))}
             </ul>
           ) : (
-            <p className="border-t border-[#1d1834] pt-3 text-sm text-[#b8aed4]">
+            <p className="border-t border-[#1d1834] pt-3 text-[15.5px] text-[#b8aed4]">
               No public recent submissions were returned by LeetCode.
             </p>
           )}

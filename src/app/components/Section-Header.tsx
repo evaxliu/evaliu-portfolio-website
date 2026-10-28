@@ -35,7 +35,7 @@ export default function SectionHeader({ title, color }: { title: string; color: 
   return (
     <>
       <Planet color={color} orbit />
-      <h2 className="mb-6 mt-3 font-space-grotesk text-xl font-semibold leading-none tracking-[-0.01em] text-white">
+      <h2 className="mb-6 mt-3 font-space-grotesk text-[22px] font-semibold leading-none tracking-[-0.01em] text-white">
         {title}
       </h2>
     </>
