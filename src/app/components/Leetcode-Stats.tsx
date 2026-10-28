@@ -21,7 +21,7 @@ type State = { data?: Stats; error?: Extract<ApiResponse, { ok: false }> };
 
 const TIME_ZONE = "America/Los_Angeles";
 const DIFFICULTY_COLORS: Record<Difficulty, string> = { Easy: "#86efac", Medium: "#fde68a", Hard: "#f9a8d4" };
-const ACTIVITY_SHADES = ["#17132e", "#2c2450", "#4c3d8a", "#8b73d6", "#ddd6fe"];
+const ACTIVITY_SHADES = ["transparent", "#3b2f6e", "#5b48a8", "#8b73d6", "#ddd6fe"];
 
 function getActivityLevel(count: number, maximum: number) {
   if (count === 0 || maximum === 0) return 0;
@@ -91,7 +91,11 @@ function ActivityGrid({ activity }: { activity: ActivityDay[] }) {
               aria-label={label}
               title={label}
               className="aspect-square rounded-[7px]"
-              style={{ background: ACTIVITY_SHADES[getActivityLevel(count, maximum)] }}
+              style={
+                count === 0
+                  ? { background: "transparent", boxShadow: "inset 0 0 0 1px #2a2347" }
+                  : { background: ACTIVITY_SHADES[getActivityLevel(count, maximum)] }
+              }
             />
           );
         })}
@@ -148,19 +152,6 @@ function SubmissionRow({ submission }: { submission: RecentSubmission }) {
   );
 }
 
-function Message({ children, profileUrl }: { children: string; profileUrl?: string }) {
-  return (
-    <div className="flex flex-col items-center gap-3">
-      <Header />
-      <p className="text-[15.5px] text-[#b8aed4]">{children}</p>
-      {profileUrl && (
-        <a className="text-[13.5px] font-semibold text-[#c4b5fd]" href={profileUrl} rel="noreferrer" target="_blank">
-          View profile on LeetCode ↗
-        </a>
-      )}
-    </div>
-  );
-}
 
 export default function LeetCodeStats() {
   const [state, setState] = useState<State>({});
@@ -208,25 +199,33 @@ export default function LeetCodeStats() {
     };
   }, []);
 
-  if (state.error) return <Message profileUrl={state.error.profileUrl}>{state.error.error}</Message>;
-  if (!state.data) return <Message>Loading live stats...</Message>;
-
-  const stats = state.data;
+  const stats: Stats = state.data ?? {
+    username: "",
+    profileUrl: state.error?.profileUrl ?? "",
+    solved: { Easy: 0, Medium: 0, Hard: 0 },
+    activity: Array.from({ length: 30 }, (_, i) => {
+      const d = new Date();
+      d.setDate(d.getDate() - (29 - i));
+      return { date: d.toISOString().slice(0, 10), count: 0 };
+    }),
+    currentStreak: 0,
+    bestStreak: 0,
+    recentSubmissions: [],
+    fetchedAt: new Date().toISOString(),
+  };
+  const status = state.data ? null : state.error ? state.error.error : "Loading live stats…";
 
   return (
     <div>
       <Header>
         <div className="flex flex-wrap justify-center gap-x-[18px] gap-y-1.5 text-[15px] leading-snug text-[#8f82b0]">
-          <span>updated {formatUpdated(stats.fetchedAt)}</span>
+          {status ? <span>{status}</span> : <span>updated {formatUpdated(stats.fetchedAt)}</span>}
           <span>
             streak <b className="font-semibold text-white">{stats.currentStreak}</b>
           </span>
           <span>
             best <b className="font-semibold text-white">{stats.bestStreak}</b>
           </span>
-          <a href={stats.profileUrl} target="_blank" rel="noreferrer" className="text-[#c4b5fd] hover:text-white">
-            profile ↗
-          </a>
         </div>
       </Header>
 
@@ -252,7 +251,7 @@ export default function LeetCodeStats() {
             </ul>
           ) : (
             <p className="border-t border-[#1d1834] pt-3 text-[15.5px] text-[#b8aed4]">
-              No public recent submissions were returned by LeetCode.
+              {status ?? "No public recent submissions were returned by LeetCode."}
             </p>
           )}
         </div>
