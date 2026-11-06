@@ -30,7 +30,7 @@ export async function GET() {
     const res = await fetch("https://leetcode.com/graphql", {
       method: "POST",
       headers: { "Content-Type": "application/json", Referer: "https://leetcode.com" },
-      body: JSON.stringify({ query: QUERY, variables: { username: USERNAME, limit: 10 } }),
+      body: JSON.stringify({ query: QUERY, variables: { username: USERNAME, limit: 20 } }),
       cache: "no-store",
     });
     if (!res.ok) throw new Error(`LeetCode responded ${res.status}`);
@@ -76,13 +76,24 @@ export async function GET() {
       cursor.setDate(cursor.getDate() - 1);
     }
 
-    const recentSubmissions = (data.recentSubmissionList ?? []).map(
+    type Submission = { title: string; titleSlug: string; timestamp: number; status: string };
+    const allSubmissions: Submission[] = (data.recentSubmissionList ?? []).map(
       (s: { title: string; titleSlug: string; timestamp: string; statusDisplay: string }) => ({
         title: s.title,
         titleSlug: s.titleSlug,
         timestamp: Number(s.timestamp),
         status: s.statusDisplay,
       }),
+    );
+
+    // If a problem has an Accepted submission on a given day, hide that day's rejected attempts.
+    const submissionDayKey = (s: Submission) =>
+      `${s.titleSlug}|${dayKey(new Date(s.timestamp * 1000))}`;
+    const acceptedKeys = new Set(
+      allSubmissions.filter((s) => s.status === "Accepted").map(submissionDayKey),
+    );
+    const recentSubmissions = allSubmissions.filter(
+      (s) => s.status === "Accepted" || !acceptedKeys.has(submissionDayKey(s)),
     );
 
     return NextResponse.json(

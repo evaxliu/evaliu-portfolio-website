@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const links = [
   { name: "LinkedIn", href: "https://www.linkedin.com/in/el02/" },
@@ -7,6 +10,9 @@ const links = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname === "/leetcode") return null;
+
   return (
     <footer className="halo relative z-[2] mx-auto flex w-full max-w-[696px] flex-wrap items-center justify-between gap-5 px-7 pb-11 pt-6 text-[15px]">
       <p className="font-semibold text-[#8f82b0]">Eva Liu · evaxliu.com ✦</p>
