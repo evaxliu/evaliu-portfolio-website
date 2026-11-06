@@ -3,7 +3,8 @@ import { NextResponse } from "next/server";
 // Set LEETCODE_USERNAME in your Vercel project env (or .env.local).
 const USERNAME = process.env.LEETCODE_USERNAME ?? "";
 const PROFILE_URL = `https://leetcode.com/u/${USERNAME}/`;
-const TIME_ZONE = "America/Los_Angeles";
+// LeetCode buckets submissionCalendar by UTC day (keys are UTC midnight), so match it.
+const TIME_ZONE = "UTC";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
