@@ -87,15 +87,20 @@ export async function GET() {
       }),
     );
 
-    // If a problem has an Accepted submission on a given day, hide that day's rejected attempts.
+    // One entry per problem per day: the Accepted one if any, otherwise the most recent attempt.
     const submissionDayKey = (s: Submission) =>
       `${s.titleSlug}|${dayKey(new Date(s.timestamp * 1000))}`;
-    const acceptedKeys = new Set(
-      allSubmissions.filter((s) => s.status === "Accepted").map(submissionDayKey),
-    );
-    const recentSubmissions = allSubmissions.filter(
-      (s) => s.status === "Accepted" || !acceptedKeys.has(submissionDayKey(s)),
-    );
+    const byProblemDay = new Map<string, Submission>();
+    for (const s of allSubmissions) {
+      const key = submissionDayKey(s);
+      const kept = byProblemDay.get(key);
+      if (!kept) {
+        byProblemDay.set(key, s);
+      } else if (kept.status !== "Accepted" && s.status === "Accepted") {
+        byProblemDay.set(key, s);
+      }
+    }
+    const recentSubmissions = [...byProblemDay.values()];
 
     return NextResponse.json(
       {
