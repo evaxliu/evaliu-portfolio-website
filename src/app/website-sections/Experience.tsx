@@ -125,7 +125,7 @@ export default function Experience() {
             body="Designed, built, and launched the company's Next.js website end to end, from requirements through deployment, SEO, and ongoing support."
           />
           <ExperienceCard
-            date="Jul 2022 – Dec 2024"
+            date="Jul 2022 – Jan 2025"
             title="Software Engineer"
             org="CRBM @ UW"
             body="Led a team building a browser-based computational-biology modeling editor, and co-authored an Oxford Bioinformatics paper on a VSCode extension with 7,000+ downloads."
